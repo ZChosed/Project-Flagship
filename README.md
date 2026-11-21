@@ -42,8 +42,8 @@ A linear 3D part-scale thermal model of wire-arc DED for any part geometry, writ
 | 5 | Boundary loss | Convection on every active face next to an inactive cell, derived from the mask | Exposed surfaces stay correct for any shape with no extra geometry code. | [3] |
 | 6 | Heat source | Goldak double-ellipsoid, arc power *u* as input (efficiency η stated) | Power enters linearly through B, so power and dwell become control inputs. | [4] |
 | 7 | Time integration | Implicit (backward) Euler, variable step (fine while depositing, coarse in dwell) | Unconditionally stable, so the step follows the torch, not a stability limit. The discrete energy balance is exact up to the CG tolerance. | [5] |
-| 8 | Linear solver | Matrix-free preconditioned CG (Jacobi first, warm start from last step) | (C/Δt + K) is symmetric positive-definite, and matrix-free avoids 3D factorization fill-in. | [6], [7], [9] |
-| 9 | Stack | JAX: `jit`, `vmap`, `grad`, `jax.scipy.sparse.linalg.cg` | GPU speed, batched RL environments and gradients for MPC from one code base. | [9]–[12] |
+| 8 | Linear solver | Matrix-free preconditioned CG, own implementation (Jacobi first, warm start from last step, tol 1e-12) | (C/Δt + K) is symmetric positive-definite, and matrix-free avoids 3D factorization fill-in. Own PCG because JAX's `cg` does not report iterations. | [6], [7] |
+| 9 | Stack | JAX: `jit`, `vmap`, `grad`, `lax.while_loop` | GPU speed, batched RL environments and gradients for MPC from one code base. | [9]–[12] |
 | 10 | Reduction (later) | Component Mode Synthesis | Built for evolving DED geometry; accurate under arbitrary deposition patterns. | [8], [13] |
 
 **Known limits:** no temperature-dependent properties, latent heat or radiation (each breaks linearity); staircase edges on curved surfaces.
