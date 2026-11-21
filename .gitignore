@@ -1,0 +1,20 @@
+Papers/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Simulation outputs (regenerate them; don't version them)
+results/
+*.npz
+*.npy
+*.h5
+
+# Local and editor files
+.env
+.vscode/
