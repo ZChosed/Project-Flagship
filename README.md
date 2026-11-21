@@ -68,7 +68,7 @@ A linear 3D part-scale thermal model of wire-arc DED for any part geometry, writ
 ### B. Build in layers, with a test for each
 5. **Milestone 1** (can start now; needs no source or deposition, so does not wait on steps 1–4): grid + `active` mask + matrix-free masked 7-point operator, then an implicit Euler step with CG on a 50 × 50 × 20 block. Tests, in order:
    1. Operator is symmetric and positive (relative 1e-12).
-   2. JAX matches a NumPy reference on a 20 × 20 × 10 grid with a random mask (1e-12).
+   2. Hand-checked operator cases: two-cell matrix, constant field, inactive cells, diagonal.
    3. Adiabatic box (h = 0): total energy constant (~1e-10), T goes to the volume mean.
    4. Hot cube with convection: max T falls monotonically to T∞; per-step energy balance to ~1e-8.
    5. Time convergence: error falls ~2× from Δt to Δt/2 (first order).
