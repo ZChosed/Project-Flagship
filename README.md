@@ -53,6 +53,7 @@ A linear 3D part-scale thermal model of wire-arc DED for any part geometry, writ
 - Whether step 8 (latent heat, temperature-dependent properties) is in scope, given design decision 1 (linear model).
 - RL observation features (candidates: interpass temperature at next segment start, layer mean/max, a few sensor points, surface field).
 - Preconditioner upgrade (AMG or multigrid) if CG needs more than ~50 iterations.
+- ⚠️ **Revisit:** exposed-face count `n_exp = 0` for inactive cells (convention set in `grid.py`). Their rows in A are identity rows, so this should have no effect. Recheck if element birth (step 7) or the energy balance gives unexpected results.
 
 ## Plan
 
