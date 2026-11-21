@@ -88,7 +88,8 @@ A linear 3D part-scale thermal model of wire-arc DED for any part geometry, writ
 ## Files
 
 - `thermal_sim/`: JAX thermal model.
-- `Papers/`: reference papers.
+- `results/`: simulation outputs (git-ignored; regenerate from code).
+- `Papers/`: reference papers (git-ignored).
 
 ## References
 1. C. He, N. Wood, N. B. Bugdayci, C. Okwudire, "Generalized SmartScan: An Intelligent LPBF Scan Sequence Optimization Approach for 3D Part Geometries," preprint, doi:10.20944/preprints202311.0153 (peer-reviewed version exists).
