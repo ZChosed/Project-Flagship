@@ -66,7 +66,7 @@ A linear 3D part-scale thermal model of wire-arc DED for any part geometry, writ
 4. Select dx and Δt from time scales: dx²/α, dx/v, layer time, cooling time.
 
 ### B. Build in layers, with a test for each
-5. **Milestone 1** (can start now; needs no source or deposition, so does not wait on steps 1–4): grid + `active` mask + matrix-free masked 7-point operator, then an implicit Euler step with CG on a 50 × 50 × 20 block. Tests, in order:
+5. **Milestone 1** (can start now; needs no source or deposition, so does not wait on steps 1–4): grid + `active` mask + matrix-free masked 7-point operator, then an implicit Euler step with CG on a 50 × 50 × 20 block. Tests, in order (in `thermal_sim/tests/`):
    1. Operator is symmetric and positive (relative 1e-12).
    2. Hand-checked operator cases: two-cell matrix, constant field, inactive cells, diagonal.
    3. Adiabatic box (h = 0): total energy constant (~1e-10), T goes to the volume mean.
@@ -88,7 +88,7 @@ A linear 3D part-scale thermal model of wire-arc DED for any part geometry, writ
 
 ## Files
 
-- `thermal_sim/`: JAX thermal model.
+- `thermal_sim/`: JAX thermal model; tests in `thermal_sim/tests/` (run `pytest` from the repo root).
 - `results/`: simulation outputs (git-ignored; regenerate from code).
 - `Papers/`: reference papers (git-ignored).
 
